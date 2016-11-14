@@ -1,6 +1,6 @@
 #include <dht11.h>
 dht11 DHT;
-#define DHT11_PIN 6
+#define DHT11_PIN 3
 
 void setupTempHumid(){
   Serial.println("DHT TEST PROGRAM ");
