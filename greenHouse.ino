@@ -1,19 +1,23 @@
+#include <SPI_VFD.h>
+
 
  //Digital pin (goes to mosfet gate (G))
  #define PUMP1_PIN 6
  
 void setup(){
   Serial.begin(9600);
-  setupTempHumid();
-  
+  setup_temp_and_humid();
+  setup_water_pump(PUMP1_PIN);
+  setup_lcd();
 }
 
 void loop(){
-  //getTemperature();
+  //get_temperature();
   //delay(1000);
-  //getHumidity();
-  //getMoisture();
-  turnOnPump(60,PUMP1_PIN);
-  
+  //get_humidity();
+  //get_moisture();
+  turn_on_pump(60,PUMP1_PIN);
+
+  displayMessage();
   delay(10000);
 }

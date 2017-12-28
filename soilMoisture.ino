@@ -13,10 +13,8 @@
   
 */
 
-void getMoisture(){
-  
+void get_moisture(){
   Serial.print("Moisture Sensor Value:");
-  Serial.println(analogRead(0));  
+  Serial.println(analogRead(0));
   delay(100);
-  
 }

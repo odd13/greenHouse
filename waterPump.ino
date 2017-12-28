@@ -12,14 +12,15 @@
  * 
  */
 
- void setupWaterPump(){
-  
+ void setup_water_pump(int PUMP_PIN1){
+  pinMode(PUMP_PIN1, OUTPUT);
+  digitalWrite(PUMP_PIN1, LOW);
  }
 
- void turnOnPump(int seconds, int pump){
-   Serial.print("Pump pin number:");
-   Serial.println(pump);
-   Serial.print("Pump turning on for:");
-   Serial.println(seconds);
+ void turn_on_pump(int seconds, int pump){
+     digitalWrite(pump, HIGH);
+     delay(seconds * 1000);
+     digitalWrite(pump, LOW);
+     delay(seconds * 1000);
  }
 
