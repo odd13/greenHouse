@@ -1,3 +1,4 @@
+#include <SoftwareSerial.h>
 /*
   # Example code for the moisture sensor
   # Editor     : Lauren
@@ -13,8 +14,8 @@
   
 */
 
-void get_moisture(){
+void get_moisture(int sensor){
   Serial.print("Moisture Sensor Value:");
-  Serial.println(analogRead(0));
+  Serial.println(analogRead(sensor));
   delay(100);
 }

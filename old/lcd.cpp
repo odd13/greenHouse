@@ -30,6 +30,7 @@
 // include the library code:
 #include <SPI_VFD.h>
 
+
 // initialize the library with the numbers of the interface pins
 SPI_VFD vfd(2, 3, 4);
 
@@ -45,6 +46,6 @@ void display_message() {
   // (note: line 1 is the second row, since counting begins with 0):
   vfd.setCursor(0, 1);
   // print the number of seconds since reset:
-  vfd.print(millis()/1000);
+  //vfd.print(time.millis()/1000);
 }
 

@@ -1,8 +1,8 @@
 #include <dht11.h>
-dht11 DHT;
 #define DHT11_PIN 6
+dht11 DHT;
 
-void setup_tempHumid(){
+void setup_temp_and_humid(){
   Serial.println("DHT TEST PROGRAM ");
   Serial.print("LIBRARY VERSION: ");
   Serial.println(DHT11LIB_VERSION);
