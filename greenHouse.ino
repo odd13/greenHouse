@@ -1,44 +1,61 @@
- //#include <SPI_VFD.h>
-
+/* GreenHouse:
+ *  Created by Odd13
+ */
 #include "MoistureSensor.h"
 #include "WaterPump.h"
+#include "HumidTempSensor.h"
+
 // LCD Library
 #include <Wire.h>
 #include <LiquidCrystal.h>
 
+/* Configure Sensors
+ * 
+ */
+
 MoistureSensor moist_sensor1(4);
-WaterPump water_pump1(5);
+WaterPump water_pump1(2);
+HumidTempSensor humid_temp_sensor1(3);
 LiquidCrystal lcd1( 8, 9, 4, 5, 6, 7 );
 
-int dry_soil = 690;
 
+/* Setting
+ *  
+ */
+int dry_soil = 550;
+int pump_running_seconds = 30;
+int lcd_line;
+int sensor_check_delay_in_seconds = 5;
+int moisture_reading_sensor1;
 
 void setup(){
   Serial.begin(9600);
 
-  // set up the display's number of columns and rows: 
+  // LCD Setup - set up the display's number of columns and rows: 
   lcd1.begin(16, 2);
-  // Print a message to the display.
-  lcd1.print("hello, world!");
 }
 
 void loop(){
-  int moisture_reading = moist_sensor1.current_moisture();
-  display_message_on_lcd(String(moisture_reading));
+  moisture_reading_sensor1 = moist_sensor1.current_moisture();
+    
+  lcd_line = 0;
+  display_message_on_lcd(moist_sensor1.current_moisture_as_string(), lcd_line, true);
   
-  if (moisture_reading <= dry_soil){
-    water_pump1.turn_on(10);
+  lcd_line = 1;
+  display_message_on_lcd(humid_temp_sensor1.current_humid_and_temp_as_string(), lcd_line, false);
+  
+  if (moisture_reading_sensor1 <= dry_soil){
+    water_pump1.turn_on(pump_running_seconds);
   }
 
-  Serial.println(moist_sensor1.current_moisture());
-  delay(5000);
+  delay(sensor_check_delay_in_seconds*1000);
 }
 
-void display_message_on_lcd(String message) {
-  // set the cursor to column 0, line 1
-  // (note: line 1 is the second row, since counting begins with 0):
-  lcd1.setCursor(0, 0);
-  lcd1.clear();
-  // print the number of seconds since reset:
-  lcd1.print("Moist: " + message + ":" + dry_soil);
+void display_message_on_lcd(String message, int lcd_line, bool lcd_clear) {
+
+  lcd1.setCursor(0, lcd_line);
+  if (lcd_clear) lcd1.clear();
+  //lcd1.clear();
+
+  lcd1.print(message);
 }
