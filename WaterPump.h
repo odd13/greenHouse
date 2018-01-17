@@ -12,6 +12,7 @@ class WaterPump
   public:
     WaterPump(int pin);
     void turn_on(int seconds);
+    void turn_off();
   private:
     int _pin;
 };
