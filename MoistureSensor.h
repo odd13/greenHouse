@@ -12,6 +12,7 @@ class MoistureSensor
   public:
     MoistureSensor(int pin);
     int current_moisture();
+    String current_moisture_as_string();
   private:
     int _pin;
 };
