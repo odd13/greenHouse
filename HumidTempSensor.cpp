@@ -24,4 +24,4 @@ int HumidTempSensor::current_temp(){
 int HumidTempSensor::current_humidity(){
   this->read(_pin);
   return this->humidity;
-} 
+

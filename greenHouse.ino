@@ -37,13 +37,13 @@ void setup(){
 
 void loop(){
   moisture_reading_sensor1 = moist_sensor1.current_moisture();
-    
+
   lcd_line = 0;
   display_message_on_lcd(moist_sensor1.current_moisture_as_string(), lcd_line, true);
-  
+
   lcd_line = 1;
   display_message_on_lcd(humid_temp_sensor1.current_humid_and_temp_as_string(), lcd_line, false);
-  
+
   if (moisture_reading_sensor1 <= dry_soil){
     water_pump1.turn_on(pump_running_seconds);
   }
